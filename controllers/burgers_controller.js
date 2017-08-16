@@ -10,29 +10,37 @@ router.get('/', function(req, res){
 });
 
 router.get('/index', function(req, res){
-	db.Burgers.findAll({}).then(function(data){
-		res.render("index", { burgers: data });
+	db.Burger.findAll({
+		include: [db.Customer]
+	}).then(function(data){
+		res.render("index", { burger: data });
 	});
 });
 
-router.post('/burgers/insertBurger', function(req, res){
-	db.Burgers.create({
+router.post('/burgers/insert', function(req, res){
+	db.Burger.create({
 		burger_name: req.body.burger_name
 	}).then(function(){
 		res.redirect('/');
 	});
 });
 
-router.put('/burgers/updateBurger/:id', function(req, res){
-	db.Burgers.update({
+router.post('/customer/insert', function(req, res){
+	db.Customer.create({
+		name: req.body.name,
+		BurgerId: req.body.burgerId
+	}).then(function(){
+		db.Burger.update({
 		devoured: true
 	}, {
 		where: {
-			id: req.params.id
+			id: req.body.burgerId
 		}
 	}).then(function(){
 		res.redirect('/');
 	});
+	})
+	
 });
 
 // Export router

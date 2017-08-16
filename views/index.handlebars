@@ -2,13 +2,15 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<h4>Uneaten Burgers</h4>
-			{{#each burgers}}
+			{{#each burger}}
 				{{#unless this.devoured}}
-					<form action="/burgers/updateBurger/{{this.id}}?_method=PUT" method="POST">
+					<form action="/customer/insert" method="POST" id="form-customer-{{this.id}}">
+						<input type="hidden" name="burgerId" value={{this.id}}>
 						<div class="input-group input-group-sm">
 							<span class="input-group-addon">{{this.id}}. {{this.burger_name}}</span>
+							<input type="text" class="form-control" placeholder="Eater name" name="name" id="customer-name-{{this.id}}">
 							<span class="input-group-btn">
-								<button class="btn btn-danger" type="submit">Devour it!</button>
+								<button class="btn btn-danger submit-customer" data-id= {{this.id}} type="submit">Devour it!</button>
 							</span>
 						</div>
 					</form>
@@ -18,9 +20,9 @@
 
 		<div class="col-sm-6">
 			<h4>Eaten Burgers</h4>
-			{{#each burgers}}
+			{{#each burger}}
 				{{#if this.devoured}}
-					<p class="eaten_burger">{{this.id}}. {{this.burger_name}}</p>
+					<p class="eaten_burger">{{this.id}}. {{this.burger_name}} (Eaten by {{this.Customer.name}})</p>
 				{{/if}}
 			{{/each}}
 		</div>
@@ -28,7 +30,7 @@
 
 	<div class="row">
 		<div class="col-sm-12">
-			<form action="/burgers/insertBurger" method="POST" id="form-burger">
+			<form action="/burgers/insert" method="POST" id="form-burger">
 				<div class="form-input text-center" id="new-burger">
 					<input type="text" class="form-control" id="burger_name" name="burger_name" placeholder="Burge name">
 	        		<button class="btn btn-primary" type="submit" id="submit-burger">Submit</button>

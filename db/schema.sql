@@ -1,8 +1,8 @@
-CREATE DATABASE burgers_db;
+CREATE DATABASE burgers;
 
-USE burgers_db;
+USE burgers;
 
-CREATE TABLE burgers(
+CREATE TABLE burger(
 	id INT NOT NULL AUTO_INCREMENT,
 	burger_name varchar(100) NOT NULL,
 	devoured boolean NOT NULL DEFAULT false,

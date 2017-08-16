@@ -25,6 +25,7 @@ fs
   });
 
 Object.keys(db).forEach(function(modelName) {
+   //console.log(db[modelName].options.hasOwnProperty('classMethod'));
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
