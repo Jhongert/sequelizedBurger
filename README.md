@@ -8,6 +8,14 @@ A full stack burger-logger app. On the server side this app uses Node and MySQL 
 
 - Each burger in the waiting area also an input to enter the name of the customer and a Devour it! button. When the user clicks it, the burger will move to the right side of the page.
 
+## Build with
+- Node.js
+- Express
+- MySQL
+- Sequelize
+- JQuery
+- Bootstrap
+
 ## [Demo](https://immense-oasis-30572.herokuapp.com/index)
 
 ## Author
